@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "d2da1bdd-cb2b-4cc5-89eb-2dc82ab42e4b",
+		"name": "Vendor API - PROD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get_ImportRequests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12e2365f-72b4-458b-82b1-063881eb7381",
+						"exec": [
+							"pm.test(\"scheduleId property does exist\", function () {",
+							"    var data = pm.response.json()",
+							"    pm.expect(data).to.have.property('importRequestId');",
+							"    pm.expect(data).to.have.property('clientId');",
+							"    pm.expect(data).to.have.property('sourceSystemCode');",
+							"    pm.expect(data).to.have.property('body');",
+							"    pm.expect(data).to.have.property('processFlag');",
+							"    pm.expect(data).to.have.property('objectType');",
+							"    pm.expect(data).to.have.property('createDate');",
+							"    pm.expect(data).to.have.property('updateDate');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorizationHeader}}"
+					},
+					{
+						"key": "ClientId",
+						"value": "133"
+					},
+					{
+						"key": "UserId",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vendorapi/v1/importrequests/customer/1?clientId=133",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vendorapi",
+						"v1",
+						"importrequests",
+						"customer",
+						"1"
+					],
+					"query": [
+						{
+							"key": "clientId",
+							"value": "133"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_ImportRequests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12e2365f-72b4-458b-82b1-063881eb7381",
+						"exec": [
+							"pm.test(\"scheduleId property does exist\", function () {",
+							"    var data = pm.response.json()[0]",
+							"    pm.expect(data).to.have.property('importRequestId');",
+							"    pm.expect(data).to.have.property('clientId');",
+							"    pm.expect(data).to.have.property('sourceSystemCode');",
+							"    pm.expect(data).to.have.property('body');",
+							"    pm.expect(data).to.have.property('processFlag');",
+							"    pm.expect(data).to.have.property('objectType');",
+							"    pm.expect(data).to.have.property('createDate');",
+							"    pm.expect(data).to.have.property('updateDate');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorizationHeader}}"
+					},
+					{
+						"key": "ClientId",
+						"value": "133"
+					},
+					{
+						"key": "UserId",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vendorapi/v1/importrequests/customer?clientId=133&processed=false",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vendorapi",
+						"v1",
+						"importrequests",
+						"customer"
+					],
+					"query": [
+						{
+							"key": "clientId",
+							"value": "133"
+						},
+						{
+							"key": "processed",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
