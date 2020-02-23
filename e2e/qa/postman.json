@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "ebec0e01-7fd8-4a2a-835d-4d72b99d82ac",
+		"name": "Vendor API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get_ImportRequests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12e2365f-72b4-458b-82b1-063881eb7381",
+						"exec": [
+							"pm.test(\"scheduleId property does exist\", function () {",
+							"    var data = pm.response.json()",
+							"    pm.expect(data).to.have.property('importRequestId');",
+							"    pm.expect(data).to.have.property('clientId');",
+							"    pm.expect(data).to.have.property('sourceSystemCode');",
+							"    pm.expect(data).to.have.property('body');",
+							"    pm.expect(data).to.have.property('processFlag');",
+							"    pm.expect(data).to.have.property('objectType');",
+							"    pm.expect(data).to.have.property('createDate');",
+							"    pm.expect(data).to.have.property('updateDate');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorizationHeader}}"
+					},
+					{
+						"key": "ClientId",
+						"value": "133"
+					},
+					{
+						"key": "UserId",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vendorapi/v1/importrequests/customer/1?clientId=133",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vendorapi",
+						"v1",
+						"importrequests",
+						"customer",
+						"1"
+					],
+					"query": [
+						{
+							"key": "clientId",
+							"value": "133"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_ImportRequests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12e2365f-72b4-458b-82b1-063881eb7381",
+						"exec": [
+							"pm.test(\"scheduleId property does exist\", function () {",
+							"    var data = pm.response.json()[0]",
+							"    pm.expect(data).to.have.property('importRequestId');",
+							"    pm.expect(data).to.have.property('clientId');",
+							"    pm.expect(data).to.have.property('sourceSystemCode');",
+							"    pm.expect(data).to.have.property('body');",
+							"    pm.expect(data).to.have.property('processFlag');",
+							"    pm.expect(data).to.have.property('objectType');",
+							"    pm.expect(data).to.have.property('createDate');",
+							"    pm.expect(data).to.have.property('updateDate');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorizationHeader}}"
+					},
+					{
+						"key": "ClientId",
+						"value": "133"
+					},
+					{
+						"key": "UserId",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vendorapi/v1/importrequests/customer?clientId=133&processed=false",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vendorapi",
+						"v1",
+						"importrequests",
+						"customer"
+					],
+					"query": [
+						{
+							"key": "clientId",
+							"value": "133"
+						},
+						{
+							"key": "processed",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_ImportRequests ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12e2365f-72b4-458b-82b1-063881eb7381",
+						"exec": [
+							"pm.test(\"scheduleId property does exist\", function () {",
+							"    var data = pm.response.json()",
+							"    pm.expect(data).to.have.property('importRequestId');",
+							"    pm.expect(data).to.have.property('clientId');",
+							"    pm.expect(data).to.have.property('sourceSystemCode');",
+							"    pm.expect(data).to.have.property('body');",
+							"    pm.expect(data).to.have.property('processFlag');",
+							"    pm.expect(data).to.have.property('objectType');",
+							"    pm.expect(data).to.have.property('createDate');",
+							"    pm.expect(data).to.have.property('updateDate');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorizationHeader}}"
+					},
+					{
+						"key": "ClientId",
+						"value": "{{clientId}}"
+					},
+					{
+						"key": "UserId",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entryId\": \"2d2ee9a3-6431-11e5-80ef-14dae9e741c7\",\r\n  \"accountId\": 1000,\r\n  \"accountName\": \"Client Account Name\",\r\n  \"campaignId\": 2000,\r\n  \"campaignName\": \"Win a Trip to New York \",\r\n  \"externalRef\": \"2015 - 01 - 01 - 11900111 - win_trip_new_york\",\r\n  \"userId\": \"c0c90c6265d4391d5fc911b53a1649f7\",\r\n  \"sourceUserId\": \"422054461\",\r\n  \"firstname\": \"James\",\r\n  \"lastname\": \"Bond\",\r\n  \"email\": \"bond@engagesciences.com\",\r\n  \"eventDate\": \"2015 - 01 - 01 10: 00: 00\",\r\n  \"dateEntered\": \"2015-01-01 10:00:00\",\r\n  \"timezone\": \"Europe/London\",\r\n  \"source\": \"SUMMERPROMO\",\r\n  \"medium\": \"direct\",\r\n  \"channel\": \"website\",\r\n  \"network\": \"web\",\r\n  \"optin\": true,\r\n  \"action\": \"entry|claim|click|download\",\r\n  \"entryType\": \"standard|rememberme\",\r\n  \"mode\": \"stage|live\",\r\n  \"data\": {\r\n    \"firstname\": \"James\",\r\n    \"lastname\": \"Bond\",\r\n    \"email\": \"bond@engagesciences.com\",\r\n    \"sourceUserId\": \"422054461\",\r\n    \"sourceUserName\": \"jbondprofile\",\r\n    \"sourceUserAvatar\": \"https://scontent.cdninstagram.com/avatar\",\r\n    \"sourceUserLink\": \"https://instagram.com/jbondprofile/\",\r\n    \"ugcOriginLink\": \"https://instagram.com/p/9OcgfrNiFc/\",\r\n    \"ugcImage\": \"https://scontent.cdninstagram.com/xxx_xxx.jpg\",\r\n    \"ugcThumbnail\": \"https://scontent.cdninstagram.com/xxx_xxx.jpg\",\r\n    \"ugcComment\": \"comment\",\r\n    \"quizScore\": \"10\",\r\n    \"quizCategory\": \"category\",\r\n    \"couponCode\": \"123123-EEERECD-22\",\r\n    \"brandOptIn\": true,\r\n    \"groupOptIn\": false,\r\n    \"thirdPartyOptIn\": false,\r\n    \"termsAndConditions\": false,\r\n    \"variableformfield1\": \"value\",\r\n    \"variableformfield2\": \"value\",\r\n    \"variableformfield3\": \"value\"\r\n  },\r\n  \"request\": {\r\n    \"ip\": \"103.192.12.1\",\r\n    \"userAgent\": \"User-Agent:Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36\"\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vendorapi/v1/importrequests/customer?sourceSystemCode=21&clientId=133",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vendorapi",
+						"v1",
+						"importrequests",
+						"customer"
+					],
+					"query": [
+						{
+							"key": "sourceSystemCode",
+							"value": "21"
+						},
+						{
+							"key": "clientId",
+							"value": "133"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT_ImportRequests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12e2365f-72b4-458b-82b1-063881eb7381",
+						"exec": [
+							"pm.test(\"scheduleId property does exist\", function () {",
+							"    var data = pm.response.json()",
+							"    pm.expect(data).to.have.property('importRequestId');",
+							"    pm.expect(data).to.have.property('clientId');",
+							"    pm.expect(data).to.have.property('sourceSystemCode');",
+							"    pm.expect(data).to.have.property('body');",
+							"    pm.expect(data).to.have.property('processFlag');",
+							"    pm.expect(data).to.have.property('objectType');",
+							"    pm.expect(data).to.have.property('createDate');",
+							"    pm.expect(data).to.have.property('updateDate');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorizationHeader}}"
+					},
+					{
+						"key": "ClientId",
+						"value": "{{clientId}}"
+					},
+					{
+						"key": "UserId",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"importRequestId\": 21,\r\n    \"clientId\": 133,\r\n    \"sourceSystemCode\": 100,\r\n    \"body\": \"{}\",\r\n    \"processFlag\": true,\r\n    \"objectType\": \"customer\",\r\n    \"createDate\": \"2019-12-11T10:54:01.583\",\r\n    \"updateDate\": \"2020-01-07T10:37:45.02\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/vendorapi/v1/importrequests/customer/21",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"vendorapi",
+						"v1",
+						"importrequests",
+						"customer",
+						"21"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
