@@ -45,10 +45,15 @@ namespace Api
 				new ConfigurationRepository(
 					Configuration.Get("Settings:ConfigurationDbConnectionString")));
 
-			_configurations = configurationService
+			(var configurations, var errors) = configurationService
 				.GetManyBy(
 					Configuration.Get("Settings:ClientToken"), 
-					Configuration.Get("Settings:Object")).ToList();
+					Configuration.Get("Settings:Object"));
+
+			if (errors != null)
+				throw new Exception(string.Join(" ", errors));
+
+			_configurations = configurations;
 
 			if (!_configurations.Any())
 				throw new Exception("No configurations have been retrieved.");
@@ -62,16 +67,6 @@ namespace Api
 				.AddNewtonsoftJson();
 
 			services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-
-			// Create named instances of HttpClient that can be created from an HttpClientFactory:
-			//services.AddHttpClient("ClientApi", client =>
-			//{
-			//	client.BaseAddress = new Uri(Configuration["Settings:ConfigurationPropertiesUrl"]);
-			//	client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $"Basic {Configuration["Settings:Authorization"]}");
-			//	client.DefaultRequestHeaders.Add("ClientId", "0");
-			//	client.DefaultRequestHeaders.Add("UserId", "LoggingApi");
-			//	client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-			//});
 
 			services.AddSingleton<IConfigurationRepository, ConfigurationRepository>(
 				_ => new ConfigurationRepository(

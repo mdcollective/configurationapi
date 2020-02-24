@@ -12,13 +12,6 @@ namespace Data.Repositories
 		/// </summary>
 		/// <param name="loginRequest">Credentials to authenticate.</param>
 		/// <returns>LoginResponse object indicating result.</returns>
-		LoginResponse LogIn(LoginRequest request);
-
-		/// <summary>
-		/// Authentication for api authentication.
-		/// </summary>
-		/// <param name="loginRequest">Credentials to authenticate.</param>
-		/// <returns>ApiLoginResponse object indicating result.</returns>
-		ApiLoginResponse LogIn(ApiLoginRequest request);
+		(LoginResponse loginResponse, string[] errors) LogIn(LoginRequest request);
 	}
 }

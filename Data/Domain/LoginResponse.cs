@@ -1,16 +1,16 @@
-﻿namespace Data.Domain
+﻿using Newtonsoft.Json;
+
+namespace Data.Domain
 {
 	public class LoginResponse
 	{
-		public bool Success
-		{
-			get
-			{
-				return Message.ToLower() == "success";
-			}
-		}
+		[JsonProperty("success")]
+		public bool Success { get; set; }
 
+		[JsonProperty("token")]
 		public string Token { get; set; }
-		public string Message { get; set; }
+
+		[JsonProperty("errors")]
+		public string[] Errors { get; set; }
 	}
 }

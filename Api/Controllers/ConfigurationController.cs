@@ -1,4 +1,5 @@
-﻿using Api.Mappings;
+﻿using Api.Dto;
+using Api.Mappings;
 using Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -31,9 +32,12 @@ namespace Api.Controllers
 		[HttpGet("configurations/{id}")]
 		public dynamic GetBy(int id)
 		{
-			var items = _service.GetBy(id);
+			(var item, var errors) = _service.GetBy(id);
 
-			var mappedItem = _mapper.Map(items);
+			if (errors != null)
+				return new ConfigurationDto { Errors = errors };
+
+			var mappedItem = _mapper.Map(item);
 
 			return mappedItem;
 		}
@@ -46,9 +50,12 @@ namespace Api.Controllers
 		[HttpGet("configurations")]
 		public dynamic GetManyBy(string clientToken, string @object)
 		{
-			var items = _service.GetManyBy(clientToken, @object).ToList();
+			(var items, var errors) = _service.GetManyBy(clientToken, @object);
 
-			var mappedItem = _mapper.Map(items);
+			if (errors != null)
+				return new ConfigurationDto { Errors = errors };
+
+			var mappedItem = _mapper.Map(items.ToList());
 
 			return mappedItem;
 		}

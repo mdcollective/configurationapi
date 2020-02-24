@@ -39,14 +39,19 @@ namespace Api.Middleware
 					return;
 				}
 
-				var loginResult = _securityService.Login(new LoginRequest
+				(var loginResponse, var errors) = _securityService.Login(new LoginRequest
 				{
 					Username = context.GetUsername(),
 					Password = context.GetPassword()
 				});
 
+				if (errors != null)
+				{
+					context.Response.StatusCode = 500;
+					await context.Response.WriteAsync(string.Join(" ", errors));
+				}
 
-				if (!loginResult.Success)
+				if (!loginResponse.Success)
 				{
 					context.Response.StatusCode = 401;
 					await context.Response.WriteAsync("Invalid username, password, or client id");

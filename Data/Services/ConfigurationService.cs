@@ -19,7 +19,7 @@ namespace Data.Services
 		/// </summary>
 		/// <param name="id">Unique identifier for the configuration object.</param>
 		/// <returns>Single configuration object.</returns>
-		public Configuration GetBy(int id)
+		public (Configuration configuration, string[] errors) GetBy(int id)
 			=> _repository.GetBy(id);
 
 		/// <summary>
@@ -28,7 +28,7 @@ namespace Data.Services
 		/// <param name="clientToken">Client unique identifier.</param>
 		/// <param name="object">Object name for configuration values.</param>
 		/// <returns>List of configurations.</returns>
-		public IEnumerable<Configuration> GetManyBy(string clientToken, string @object)
+		public (IEnumerable<Configuration> configurations, string[] errors) GetManyBy(string clientToken, string @object)
 			=> _repository.GetManyBy(clientToken, @object);
 	}
 }

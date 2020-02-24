@@ -12,13 +12,10 @@ namespace Data.Repositories
 	public class ConfigurationRepository : IConfigurationRepository
 	{
 
-		/// <summary>
-		/// Connection string for Configuration database.
-		/// </summary>
-		private readonly string _connectionString = string.Empty;
+		private readonly ConfigurationDbContext _context;
 
 		public ConfigurationRepository(string connectionString)
-			=> _connectionString = connectionString;
+			=> _context = new ConfigurationDbContext(connectionString);
 
 		/// <summary>
 		/// Gets a list of configuration objects with the provided client token and object name.
@@ -26,15 +23,20 @@ namespace Data.Repositories
 		/// <param name="clientToken">Client unique identifier.</param>
 		/// <param name="object">Object name for configuration values.</param>
 		/// <returns>List of configurations.</returns>
-		public IEnumerable<Configuration> GetManyBy(string clientToken, string @object)
+		public (IEnumerable<Configuration> configurations, string[] errors) GetManyBy(string clientToken, string @object)
 		{
-			var context = new ConfigurationDbContext(_connectionString);
+			try
+			{
+				var items = _context.Configurations.Where(_ =>
+					_.ClientToken == Guid.Parse(clientToken) &&
+					_.Object.ToLower() == @object.ToLower());
 
-			var items = context.Configurations.Where(_ => 
-				_.ClientToken == Guid.Parse(clientToken) && 
-				_.Object.ToLower() == @object.ToLower());
-
-			return items;
+				return (items, null);
+			}
+			catch (Exception exception)
+			{
+				return (null, new string[] { exception.Message });
+			}
 		}
 
 		/// <summary>
@@ -42,13 +44,18 @@ namespace Data.Repositories
 		/// </summary>
 		/// <param name="id">Unique identifier for the configuration object.</param>
 		/// <returns>Single configuration object.</returns>
-		public Configuration GetBy(int id)
+		public (Configuration configuration, string[] errors) GetBy(int id)
 		{
-			var context = new ConfigurationDbContext(_connectionString);
+			try
+			{
+				var item = _context.Configurations.FirstOrDefault(_ => _.Id == id);
 
-			var item = context.Configurations.FirstOrDefault(_ => _.Id == id);
-
-			return item;
+				return (item, null);
+			}
+			catch (Exception exception)
+			{
+				return (null, new string[] { exception.Message });
+			}
 		}
 	}
 }
