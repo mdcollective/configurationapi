@@ -16,6 +16,5 @@ namespace Api
 				{
 					webBuilder.UseStartup<Startup>();
 				});
-
 	}
 }

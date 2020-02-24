@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Linq;
 
-namespace Inntopia.Api.Common.Http.Extensions
+namespace Api.Common.Http.Extensions
 {
 	/// <summary>
 	/// IHeaderDictionary extension methods.

@@ -36,5 +36,10 @@ namespace Api.Dto
 		/// Unique identifier for configuration.
 		/// </summary>
 		public int Id { get; set; }
+
+		/// <summary>
+		/// Any errors that have occurred during the request.
+		/// </summary>
+		public string[] Errors { get; set; }
 	}
 }

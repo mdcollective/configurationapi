@@ -25,9 +25,6 @@ namespace Api.Extensions
 			if (context.GetPassword() == string.Empty)
 				return false;
 
-			if (context.GetUserId() == string.Empty)
-				return false;
-
 			return true;
 		}
 

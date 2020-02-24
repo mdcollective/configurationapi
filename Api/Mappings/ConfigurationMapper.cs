@@ -15,7 +15,7 @@ namespace Api.Mappings
 		/// </summary>
 		/// <param name="itemsToMap">List of configuration domain objects.</param>
 		/// <returns>List of configuration dto objects.</returns>
-		public List<ConfigurationDto> Map(List<Configuration> itemsToMap)
+		public IEnumerable<ConfigurationDto> Map(IEnumerable<Configuration> itemsToMap)
 		{
 			if (itemsToMap == null)
 				return default;
@@ -28,7 +28,7 @@ namespace Api.Mappings
 		/// </summary>
 		/// <param name="itemsToMap">List of configuration dto objects.</param>
 		/// <returns>List of configuration domain objects.</returns>
-		public List<Configuration> Map(List<ConfigurationDto> itemsToMap)
+		public IEnumerable<Configuration> Map(IEnumerable<ConfigurationDto> itemsToMap)
 		{
 			if (itemsToMap == null)
 				return default;

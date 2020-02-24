@@ -28,13 +28,13 @@ namespace Api.Mappings
 		/// </summary>
 		/// <param name="itemsToMap">List of configuration domain objects.</param>
 		/// <returns>List of configuration dto objects.</returns>
-		List<ConfigurationDto> Map(List<Configuration> itemsToMap);
+		IEnumerable<ConfigurationDto> Map(IEnumerable<Configuration> itemsToMap);
 
 		/// <summary>
 		/// Maps a list of Configuration dto objects to a list of configuration domain objects.
 		/// </summary>
 		/// <param name="itemsToMap">List of configuration dto objects.</param>
 		/// <returns>List of configuration domain objects.</returns>
-		List<Configuration> Map(List<ConfigurationDto> itemsToMap);
+		IEnumerable<Configuration> Map(IEnumerable<ConfigurationDto> itemsToMap);
 	}
 }

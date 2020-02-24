@@ -18,15 +18,7 @@ namespace Data.Services
 		/// </summary>
 		/// <param name="loginRequest">Credentials to authenticate.</param>
 		/// <returns>LoginResponse object indicating result.</returns>
-		public LoginResponse Login(LoginRequest loginRequest)
-			=>  _securityRepository.LogIn(loginRequest);
-
-		/// <summary>
-		/// Authentication for api authentication.
-		/// </summary>
-		/// <param name="loginRequest">Credentials to authenticate.</param>
-		/// <returns>ApiLoginResponse object indicating result.</returns>
-		public ApiLoginResponse Login(ApiLoginRequest loginRequest)
+		public (LoginResponse loginResponse, string[] errors) Login(LoginRequest loginRequest)
 			=> _securityRepository.LogIn(loginRequest);
 	}
 }
